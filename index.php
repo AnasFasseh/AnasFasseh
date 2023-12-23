@@ -26,6 +26,10 @@
         TodoList
     </nav>
 
+    <form action="" method="post">
+        <input type="text" name="title" placeholder="Task Title">
+        <input type="submit" value="Add" class="btn btn-primary">
+    </form>
 
     <script src="../bootstrap-5.3.2-dist/js/bootstrap.min.js"></script>
 </body>
