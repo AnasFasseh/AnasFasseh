@@ -1,3 +1,15 @@
+<?php
+    require ('cnx.php'); 
+    if (isset($_POST['add'])) {
+        if (empty($_POST['title'])) {
+            echo "<script type='text/javascript'>alert('le champ ne doit pas etre vide');</script>";
+        } else {
+            $response = $c->prepare('INSERT INTO todo(title) VALUES (:par)');
+            $response->bindValue('par', @$_POST['title']);
+            $response->execute();
+        }
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,20 +20,6 @@
     <link rel="stylesheet" href="../bootstrap-5.3.2-dist/css/bootstrap.min.css">
 </head>
 <body>
-    <?php 
-    $server='localhost';
-    $DB_USER='root';
-    $DB_PASS='anasfasseh2003';
-    $DB_NAME='todolist';
-
-    try{
-        $c = new PDO("mysql:host=$server; dbname=$DB_NAME", $DB_USER, $DB_PASS);
-        $c->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    }
-    catch (PDOException $e){
-        echo "erreur lors de la connexion a la base de données: ".$e->getMessage();
-    }
-    ?>
     <nav class="navbar bg-dark text-light">
         TodoList
     </nav>
